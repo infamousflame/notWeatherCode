@@ -10,8 +10,14 @@ def getWeatherData(city, year, month, day):
     data2 = json.loads(response2.read())
     return data2
 
-weather = getWeatherData("fresno", time.strftime("%Y"), time.strftime("%m"), time.strftime("%d"))
 
-print weather
-print weather[0].get("weather_state_name")
+def getWeather(data, city, year, month, day):
+    weather = getWeatherData(city, year, month, day)
+    return data + ": " + str(weather[0].get(data))
+
+
+print getWeather("humidity", "fresno", time.strftime("%Y"), time.strftime("%m"), time.strftime("%d"))
+# print "Weather Status: " + weather[0].get("weather_state_name")
+# print "Humidity: " + str(weather[0].get("humidity"))
+
 
