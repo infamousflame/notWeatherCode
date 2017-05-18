@@ -1,0 +1,26 @@
+import urllib, json
+
+def getLocation(city):
+    response = urllib.urlopen("https://www.metaweather.com/api/location/search/?query=" + city)
+    data = json.loads(response.read())
+    return data[0]["woeid"]
+
+
+def getWeatherData(location):
+    response = urllib.urlopen("https://www.metaweather.com/api/location/"+ format(str((location))))
+    data = json.loads(response.read())
+    return data
+
+location = getLocation("fresno")
+
+weatherData = getWeatherData(location)
+
+print getWeatherData(location)
+print getWeatherData(location).get("consolidated_weather")[0].get("wind_speed")
+
+
+# def getSpecificWeatherData(weatherData):
+
+
+
+
